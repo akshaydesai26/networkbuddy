@@ -1,0 +1,32 @@
+Marketing: {{market_no}}
+Finance: {{finance_no}}
+Hr: {{ hr_no}}
+<br>
+<button><a href="/contacts">Click to see all contacts</a></button>
+
+<h2>Marketing</h2>
+{{#each market_arr}}
+
+    <form action="/profile" method="post">
+        <input type="text" name="id" value={{this}} style="display: none;">
+        <button type="submit">{{this}}</button>
+    </form>
+{{/each}}
+
+<h2>Finance</h2>
+{{#each finance_arr}}
+
+    <form action="/profile" method="post">
+        <input type="text" name="id" value={{this}} style="display: none;">
+        <button type="submit">{{this}}</button>
+    </form>
+{{/each}}
+
+<h2>HR</h2>
+{{#each hr_arr}}
+
+    <form action="/profile" method="post">
+        <input type="text" name="id" value={{this}} style="display: none;">
+        <button type="submit">{{this}}</button>
+    </form>
+{{/each}}

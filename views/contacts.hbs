@@ -1,0 +1,27 @@
+{{data}}
+
+
+
+
+{{#each data}}
+    <div style="border-style: solid; margin:10px; padding:10px; width:40%">
+    <!--{{#each this}}
+       
+    <p>{{ this.name }}</p>
+    <form action="/profile" method="get">
+        <p name="id">{{this._id}}</p>
+        <button type="submit">Click</button>
+    </form>
+    
+
+    {{/each}}-->
+    {{ this.name }}
+
+    <form action="/profile" method="post">
+    <input type="text" name="id" value={{this.id}}>
+    <button type="submit">Click</button>
+    </form>
+    
+    </div>
+{{/each}}
+
