@@ -1,8 +1,93 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #ebebeb;
+  padding:0px;
+  padding-bottom: 20px;
 }
 
 a {
   color: #00B7FF;
+}
+
+.dot {
+  height: 100px;
+  width: 100px;
+  background-color: #fc73b3;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 50px;
+  margin-right:50px;
+  margin-top:10px;
+  line-height: 100px;
+  color:white;
+}
+.prof_tags{
+  text-align:center;
+  
+}
+.btn-light{
+  background-color:white;
+  color: #0a54ff;
+  box-shadow: 0px 2px 6px #444141;
+}
+.all_contacts{
+  text-align: center;
+  margin-top:20px;
+}
+.dot p{
+  font-weight:bold;
+}
+
+.title{
+  font-family: "Courier New", Courier, monospace;
+  color: #0a54ff;
+  text-align:center;
+  font-size: 60px;
+  
+}
+
+.dot:hover{
+  height:110px;
+  width:110px;
+  line-height: 110px;
+  transition:1s;
+}
+
+.footer{
+  position:fixed;
+  text-align: center;
+  background-color:black;
+  width: 100%;
+  color:white;
+  font-family: "Courier New", Courier, monospace;
+  height:18px;
+  bottom:0px;
+  opacity: 0.7;
+}
+
+.group{
+  margin-top:auto;
+  padding:20px;
+  text-align:center;
+  background-color:white;
+}
+.lists{
+  text-align:center;
+  width:100%;
+  padding-left:35%;
+  padding-right:35%;
+  margin-top:30px;
+}
+.group h2{
+  margin-bottom:20px;
+}
+
+.group form button{
+  width:100%;
+  background-color:white;
+  padding-top:10px;
+  padding-bottom:10px;
+  border:none;
+  border-bottom: 1px solid gray;
 }
