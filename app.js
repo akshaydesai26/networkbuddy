@@ -7,8 +7,9 @@ const mongoose=require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const Contacts=require('./models/Contacts');
+require('dotenv').config();
 
-const db='mongodb+srv://akshay:akshay@cluster0.ou2xf.mongodb.net/Network?retryWrites=true&w=majority';
+const db=process.env.MONGO_KEY;
 
 //connect to mongo
 mongoose.connect(db,{useNewUrlParser: true})  //url parser is formality
