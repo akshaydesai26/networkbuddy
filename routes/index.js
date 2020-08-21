@@ -10,7 +10,7 @@ const Userinfo=require('../models/Userinfo');
   res.render('index', { title: 'Express' });
 });*/
 
-router.get('/addcontact', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('addcontact', { title: 'Add Contact' });
 });
 
@@ -114,7 +114,7 @@ router.post('/profile',function(req,res){
 
 });
 
-router.get('/',function(req,res){
+router.get('/home',function(req,res){
   username='akshaydesai26';
   Userinfo.find({username:username},(err,info)=>{
     //console.log(info);
