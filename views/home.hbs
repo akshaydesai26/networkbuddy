@@ -13,39 +13,53 @@
 <div class="all_contacts">
 <button class="btn btn-light"><a href="/contacts">Click to see all contacts</a></button>
 </div>
-<div class="lists">
-<div  class="market_block group">
-<h2>Marketing</h2>
-{{#each market_arr}}
 
-    <form action="/profile" method="post">
-        <input type="text" name="id" value={{this}} style="display: none;">
-        <button type="submit">{{this}}</button>
-    </form>
-{{/each}}
-</div>
-<div style="display:none" class="finance_block group">
-<h2 >Finance</h2>
-{{#each finance_arr}}
 
-    <form action="/profile" method="post">
-        <input type="text" name="id" value={{this}} style="display: none;">
-        <button type="submit">{{this}}</button>
-    </form>
-{{/each}}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-sm-0">
+    </div>
+    <div class="col-lg-4 col-sm-12">
+      <div class="lists">
+        <h2>Marketing</h2>
+        <div  class="market_block group">
+        
+        {{#each market_arr}}
+
+            <form action="/profile" method="post">
+                <input type="text" name="id" value={{this}} style="display: none;">
+                <button type="submit">{{this}}</button>
+            </form>
+        {{/each}}
+        </div>
+        <div style="display:none" class="finance_block group">
+        <h2 >Finance</h2>
+        {{#each finance_arr}}
+
+            <form action="/profile" method="post">
+                <input type="text" name="id" value={{this}} style="display: none;">
+                <button type="submit">{{this}}</button>
+            </form>
+        {{/each}}
+        </div>
+
+        <div style="display:none" class="hr_block group">
+        <h2>HR</h2>
+        {{#each hr_arr}}
+
+            <form action="/profile" method="post">
+                <input type="text" name="id" value={{this}} style="display: none;">
+                <button type="submit">{{this}}</button>
+            </form>
+        {{/each}}
+        </div>
+    </div>
+    </div>
+    <div class="col-lg-4">
+    </div>
+  </div>
 </div>
 
-<div style="display:none" class="hr_block group">
-<h2>HR</h2>
-{{#each hr_arr}}
-
-    <form action="/profile" method="post">
-        <input type="text" name="id" value={{this}} style="display: none;">
-        <button type="submit">{{this}}</button>
-    </form>
-{{/each}}
-</div>
-</div>
 <br><br>
 <button type="button" class="btn btn-primary">Primary</button>
 <button type="button" class="btn btn-secondary">Secondary</button>
