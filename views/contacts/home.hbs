@@ -5,9 +5,9 @@
 
 <br>
 <div id="prof_tags" class="prof_tags">
-    <div class="dot"><p>Marketing:{{market_no}}</p></div> 
-    <div class="dot"><p>Finance: {{finance_no}}</p></div> 
-    <div class="dot"><p>Hr: {{ hr_no}}</p></div>
+    <div class="dot"><div class="market"><p>Marketing:{{market_no}}</p></div></div> 
+    <div class="dot"><div class="finance"><p>Finance: {{finance_no}}</p></div></div> 
+    <div class="dot"><div class="hr"><p>Hr: {{ hr_no}}</p></div></div>
 </div>
 <br>
 <div class="all_contacts">
@@ -21,9 +21,10 @@
     </div>
     <div class="col-lg-4 col-sm-12">
       <div class="lists">
+        <div  class="market_block group1">
         <h2>Marketing</h2>
-        <div  class="market_block group">
         
+        <div class="group">
         {{#each market_arr}}
 
             <form action="/profile" method="post">
@@ -32,8 +33,10 @@
             </form>
         {{/each}}
         </div>
-        <div style="display:none" class="finance_block group">
+        </div>
+        <div style="display:none" class="finance_block group1">
         <h2 >Finance</h2>
+        <div class="group">
         {{#each finance_arr}}
 
             <form action="/profile" method="post">
@@ -42,9 +45,11 @@
             </form>
         {{/each}}
         </div>
+        </div>
 
-        <div style="display:none" class="hr_block group">
+        <div style="display:none" class="hr_block group1">
         <h2>HR</h2>
+        <div class="group">
         {{#each hr_arr}}
 
             <form action="/profile" method="post">
@@ -52,6 +57,7 @@
                 <button type="submit">{{this}}</button>
             </form>
         {{/each}}
+        </div>
         </div>
     </div>
     </div>
@@ -61,6 +67,20 @@
 </div>
 
 <br><br>
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
+<script>
+    $('#test').click(function(){
+        $(this).hide();
+    })
+    $('.market').click(function(){
+        $('.group1').hide();
+        $('.market_block').show();
+    })
+    $('.finance').click(function(){
+        $('.group1').hide();
+        $('.finance_block').show();
+    })
+    $('.hr').click(function(){
+        $('.group1').hide();
+        $('.hr_block').show();
+    })
+</script>

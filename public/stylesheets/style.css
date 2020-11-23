@@ -65,7 +65,10 @@ a {
   bottom:0px;
   opacity: 0.7;
 }
-
+.group1{
+  overflow-y: hidden;
+  
+}
 .group{
   margin-top:auto;
   padding:20px;
@@ -73,6 +76,7 @@ a {
   background-color:white;
   height: 200px;
   overflow-y:scroll;
+  transition: 2s;
 }
 .lists{
   text-align:center;
@@ -81,12 +85,25 @@ a {
   padding-right:0%;
   margin-top:30px;
   padding-top:20px;
-  
   background-color:white;
+  box-shadow: 0px 2px 6px #444141;
 }
-.group h2{
+.group1 h2{
   margin-bottom:20px;
+  position: relative;
+  padding-bottom:10px;
 }
+h2::after {
+  display: block;
+    content: '';
+   width: 20%;
+   height: 2px;
+   background: #0a54ff;
+   position: absolute;
+   bottom: 0;
+   left: 40%;
+ }
+
 
 .group form button{
   width:100%;

@@ -4,11 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose=require('mongoose');
+const flash = require('connect-flash');
+const session =require('express-session');
+const passport = require('passport');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const Contacts=require('./models/Contacts');
 require('dotenv').config();
 
+require('./config/passport')(passport);
 const db=process.env.MONGO_KEY;
 
 //connect to mongo
@@ -27,6 +31,31 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//6.express session
+app.use(session({      //no idea what these are
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
+}));
+
+//9. passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+//7.connect flash
+app.use((flash()));  //we get a flash message and store it in a session, (in render we just reload with new values)
+
+//8.global vars
+app.use((req,res,next)=>{
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+
+    next();
+
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

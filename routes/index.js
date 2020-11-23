@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/addcontact', function(req, res, next) {
-  res.render('addcontact', { title: 'Add Contact' });
+  res.render('contacts/addcontact', { title: 'Add Contact' });
 });
 
 /*router.get('/savedummy',function(req,res){
@@ -72,7 +72,7 @@ router.post('/savecontact', function(req, res, next) {
       }
     }
     uploader(0);
-    console.log(just_saved);
+    console.log('just_saved');
     
   })
   
@@ -85,7 +85,7 @@ router.get('/contacts',function(req,res){
         res.status(500).send(err);
       }
       console.log(userjson);
-      res.render('contacts', {data: userjson});
+      res.render('contacts/contacts', {data: userjson});
       //console.log(data);
     });
 
@@ -107,7 +107,7 @@ router.post('/profile',function(req,res){
       res.status(500).send(err);
     }
     console.log(userjson);
-    res.render('profile', {data: userjson});
+    res.render('contacts/profile', {data: userjson});
     //console.log(data);
   });
   //res.render('profile',{id: id});
@@ -125,7 +125,7 @@ router.get('/home',function(req,res){
     var hr_no=info[0].hr.length;
     var hr_arr=info[0].hr;
     //console.log(market_no);
-    res.render('home', { market_no:market_no, finance_no:finance_no, hr_no:hr_no, market_arr:market_arr, finance_arr:finance_arr, hr_arr:hr_arr });
+    res.render('contacts/home', { market_no:market_no, finance_no:finance_no, hr_no:hr_no, market_arr:market_arr, finance_arr:finance_arr, hr_arr:hr_arr });
 
   })
 })
