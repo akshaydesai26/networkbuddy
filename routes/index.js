@@ -7,7 +7,8 @@ const Userinfo=require('../models/Userinfo');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  /*res.render('index', { title: 'Express' });*/
+  res.redirect('/home');
 });
 
 router.get('/addcontact', function(req, res, next) {
@@ -67,7 +68,8 @@ router.post('/savecontact', function(req, res, next) {
         if(i==tag_arr.length)
         {
           console.log('rendering now');
-          res.render('index', { title: 'New contact saved' });
+          /*res.render('index', { title: 'New contact saved' });*/
+          res.redirect('/addcontact');
         }
       }
     }
@@ -107,7 +109,19 @@ router.post('/profile',function(req,res){
       res.status(500).send(err);
     }
     console.log(userjson);
-    res.render('contacts/profile', {data: userjson});
+    //as userjson is not own property of parent, it cant be used, hence jugaad
+    const newDoc = {
+      doc: userjson.map(function (data) {
+          return {
+              name: data.name,
+              email: data.email,
+              description:data.description,
+              tag_arr:data.tag_arr
+          }
+      })
+  }
+  console.log(newDoc.doc);
+    res.render('contacts/profile', {data: newDoc.doc});
     //console.log(data);
   });
   //res.render('profile',{id: id});

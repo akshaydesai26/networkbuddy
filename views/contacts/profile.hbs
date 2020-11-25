@@ -1,6 +1,11 @@
-{{#each data}}
-    <p>Name:{{this.name}}</p>
-    <p>Email:{{this.email}}</p>
-    <p>Description:{{this.description}}</p>
-    <p>Tags:{{this.tag_arr}}</p>
-{{/each}}
+<div class="card_p" style="background-color: white; border-radius:10px; display: flex; height: 40%">
+    <div class="image" style="text-align:center; width:40%; margin:0px"><i class="fa fa-user-circle-o" aria-hidden="true" style="font-size:100px"></i></div>
+    <div class="content">
+        {{#each data}}
+            <p>Name:{{this.name}}</p>
+            <p>Email:{{this.email}}</p>
+            <p>Description:{{this.description}}</p>
+            <p>Tags:{{this.tag_arr}}</p>
+        {{/each}}
+    </div>
+</div>

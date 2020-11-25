@@ -10,9 +10,12 @@ const passport = require('passport');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const Contacts=require('./models/Contacts');
+var expressHbs = require('express-handlebars');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
+const hbs = require('hbs');
 require('dotenv').config();
 
-require('./config/passport')(passport);
+require('./config/passport');
 const db=process.env.MONGO_KEY;
 
 //connect to mongo
@@ -36,14 +39,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({      //no idea what these are
   secret: 'secret',
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie:{maxAge:180*60*1000}
 }));
 
 //9. passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+app.engine('.hbs', expressHbs({
+  extname: 'hbs', 
+  defaultLayout: 'layout',
+  layoutDir: __dirname + '/views',
+  partialsDir: path.join(__dirname, 'views/partials'),
+}));
 //7.connect flash
 app.use((flash()));  //we get a flash message and store it in a session, (in render we just reload with new values)
 
@@ -52,7 +61,8 @@ app.use((req,res,next)=>{
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
-
+    res.locals.login = req.isAuthenticated();
+    res.locals.session=req.session;
     next();
 
 });
