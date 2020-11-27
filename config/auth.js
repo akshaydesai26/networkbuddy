@@ -3,7 +3,7 @@ module.exports={
         if(req.isAuthenticated()){
             return next();
         }
-        req.flash('error_msg','please login');
-        res.redirect('/users/login');
+        //req.flash('error_msg','please login');
+        res.redirect('/users/signin');
     }
 }

@@ -6,7 +6,7 @@ var csrfProtection= csrf();
 router.use(csrfProtection);
 
 router.get('/profile',isLoggedIn,function(req, res, next){
-    res.render('auth/welcome');
+    res.render('index',{title: req.user.name});
 });
 router.get('/logout',isLoggedIn,function(req, res, next){
   req.logout();
@@ -56,11 +56,11 @@ function isLoggedIn(req, res, next){
   if(req.isAuthenticated()){
     return next();
   }
-  res.redirect('/');
+  res.redirect('/users/signin');
 }
 function notLoggedIn(req, res, next){
   if(!req.isAuthenticated()){
     return next();
   }
-  res.redirect('/');
+  res.redirect('/users/profile');
 }

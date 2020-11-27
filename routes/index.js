@@ -1,23 +1,24 @@
 var express = require('express');
 var router = express.Router();
 const mongoose=require('mongoose');
+const ensureAuth=require('../config/auth').ensureAuthenticated;
 
 const Contacts=require('../models/Contacts');
 const Userinfo=require('../models/Userinfo');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/',ensureAuth,function(req, res, next) {
   /*res.render('index', { title: 'Express' });*/
   res.redirect('/home');
 });
 
-router.get('/addcontact', function(req, res, next) {
+router.get('/addcontact',ensureAuth, function(req, res, next) {
   res.render('contacts/addcontact', { title: 'Add Contact' });
 });
 
-/*router.get('/savedummy',function(req,res){
+router.get('/savedummy',function(req,res){
   const newUserinfo=new Userinfo({
-    username:'akshaydesai26',
+    username:'akshaydesai26@gmail.com',
     marketing:[],
     finance:[],
     hr:[],
@@ -29,7 +30,7 @@ router.get('/addcontact', function(req, res, next) {
       console.log('saved')
       )
     .catch(err=>console.log(err));
-});*/
+});
 router.post('/savecontact', function(req, res, next) {
   
   var data=req.body;
@@ -80,7 +81,7 @@ router.post('/savecontact', function(req, res, next) {
   
 });
 
-router.get('/contacts',function(req,res){
+router.get('/contacts',ensureAuth, function(req,res){
   //res.render('admin');
   Contacts.find({}, (err, userjson) => {
       if (err) {
@@ -128,7 +129,7 @@ router.post('/profile',function(req,res){
 
 });
 
-router.get('/home',function(req,res){
+router.get('/home',ensureAuth,function(req,res){
   username='akshaydesai26';
   Userinfo.find({username:username},(err,info)=>{
     //console.log(info);
