@@ -4,7 +4,7 @@ var csrf=require('csurf');
 var passport=require('passport');
 var csrfProtection= csrf();
 router.use(csrfProtection);
-
+const Userinfo=require('../models/Userinfo');
 router.get('/profile',isLoggedIn,function(req, res, next){
     res.render('index',{title: req.user.name});
 });
@@ -13,6 +13,7 @@ router.get('/logout',isLoggedIn,function(req, res, next){
   res.redirect('/');
 });
 
+//only if not logged in, all the routes below will work
 router.use('/',notLoggedIn, function(req, res, next){
   next();
 });
@@ -25,12 +26,28 @@ router.post('/signup',passport.authenticate('local.signup',{
   failureRedirect:'/users/signup',
   failureFlash:true
 }),function(req, res, next){
+
+  const newUserinfo=new Userinfo({
+    username:req.user.email,
+    marketing:[],
+    finance:[],
+    hr:[],
+    sports:[]
+  });
+  newUserinfo.save()
+    .then(
+      console.log('new DS saved')
+      )
+    .catch(err=>console.log(err));
+
   if(req.session.oldUrl){
+    console.log('old');
     var oldUrl=req.session.oldUrl;
     req.session.oldUrl=null;
     res.redirect(oldUrl);
   }else{
-    res.redirect('/users/profile');
+    console.log('new');
+    res.redirect('/home');
   }
 });
 router.get('/signin',function(req, res, next){
@@ -47,7 +64,7 @@ router.post('/signin', passport.authenticate('local.signin',{
     req.session.oldUrl=null;
     res.redirect(oldUrl);
   }else{
-    res.redirect('/users/profile');
+    res.redirect('/home');
   }
 } );
 module.exports = router;

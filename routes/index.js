@@ -16,7 +16,7 @@ router.get('/addcontact',ensureAuth, function(req, res, next) {
   res.render('contacts/addcontact', { title: 'Add Contact' });
 });
 
-router.get('/savedummy',function(req,res){
+/*router.get('/savedummy',function(req,res){
   const newUserinfo=new Userinfo({
     username:'akshaydesai26@gmail.com',
     marketing:[],
@@ -30,7 +30,7 @@ router.get('/savedummy',function(req,res){
       console.log('saved')
       )
     .catch(err=>console.log(err));
-});
+});*/
 router.post('/savecontact', function(req, res, next) {
   
   var data=req.body;
@@ -44,7 +44,7 @@ router.post('/savecontact', function(req, res, next) {
     description: description,
     tag_arr: tag_arr
   };
-  var username='akshaydesai26';
+  var username=req.user.email;
 
   Contacts.create(newCont,(err,just_saved)=>{
     if(err){
@@ -130,7 +130,7 @@ router.post('/profile',function(req,res){
 });
 
 router.get('/home',ensureAuth,function(req,res){
-  username='akshaydesai26';
+  username=req.user.email;
   Userinfo.find({username:username},(err,info)=>{
     //console.log(info);
     var market_no=info[0].marketing.length;

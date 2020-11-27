@@ -27,6 +27,7 @@ passport.use('local.signup',new LocalStrategy({
     });
     return done(null,false,req.flash('error',messages));
   }*/
+  console.log('1');
   User.findOne({'email':email},function(err,user){
     if(err){
       return done(err);
@@ -34,7 +35,10 @@ passport.use('local.signup',new LocalStrategy({
     if(user){
       return done(null,false,{message:'Email is already in use.'});
     }
+    console.log('2');
     var newUser=new User();
+    //console.log(req.body.name);
+    newUser.name=req.body.name || 'Faulty name';
     newUser.email=email;
     newUser.password=newUser.encryptPassword(password);
     newUser.save(function(err,result){
